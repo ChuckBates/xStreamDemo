@@ -1,19 +1,33 @@
-package Objects;
+package com.fbi.plugins.xStreamDemo.Objects;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 import java.util.List;
 
 /**
  * User: cbates
  */
+@XStreamAlias("order")
 public class Order {
+    @XStreamAlias("orderId")
     private int orderId;
+    @XStreamAlias("customer_type")
     private int customer_type;
+    @XStreamAlias("po")
     private String po;
-    private String shipMetod;
+    @XStreamAlias("shipMethod")
+    private String shipMethod;
+    @XStreamAlias("billConvReq")
     private boolean billConvReq;
+    @XStreamAlias("show_price")
     private boolean show_price;
+    @XStreamAlias("shipto")
     private ShipToAddress shipTo;
+    @XStreamAlias("billto")
     private BillToAddress billTo;
+
+    @XStreamImplicit
     private List<Item> items;
 
     public int getOrderId() {
@@ -40,12 +54,12 @@ public class Order {
         this.po = po;
     }
 
-    public String getShipMetod() {
-        return shipMetod;
+    public String getShipMethod() {
+        return shipMethod;
     }
 
-    public void setShipMetod(String shipMetod) {
-        this.shipMetod = shipMetod;
+    public void setShipMethod(String shipMethod) {
+        this.shipMethod = shipMethod;
     }
 
     public boolean isBillConvReq() {

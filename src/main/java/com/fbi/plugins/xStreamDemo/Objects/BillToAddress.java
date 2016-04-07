@@ -1,13 +1,21 @@
-package Objects;
+package com.fbi.plugins.xStreamDemo.Objects;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * User: cbates
  */
+@XStreamAlias("billto")
 public class BillToAddress {
+    @XStreamAlias("billAddr1")
     private String billAddr1;
+    @XStreamAlias("billAddressee")
     private String billAddressee;
+    @XStreamAlias("billCity")
     private String billCity;
+    @XStreamAlias("billState")
     private String billState;
+    @XStreamAlias("billZip")
     private int billZip;
 
     public String getBillAddr1() {

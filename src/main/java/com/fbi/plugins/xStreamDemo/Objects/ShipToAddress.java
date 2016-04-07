@@ -1,15 +1,25 @@
-package Objects;
+package com.fbi.plugins.xStreamDemo.Objects;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
  * User: cbates
  */
+@XStreamAlias("shipto")
 public class ShipToAddress {
+    @XStreamAlias("shipAddressee")
     private String shipAddressee;
+    @XStreamAlias("shipAddr1")
     private String shipAddr1;
+    @XStreamAlias("shipCity")
     private String shipCity;
+    @XStreamAlias("shipCountry")
     private String shipCountry;
+    @XStreamAlias("shipIsResidential")
     private boolean shipIsResidential;
+    @XStreamAlias("shipState")
     private String shipState;
+    @XStreamAlias("shipZip")
     private int shipZip;
 
     public String getShipAddressee() {
