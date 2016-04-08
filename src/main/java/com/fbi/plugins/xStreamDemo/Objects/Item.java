@@ -47,4 +47,13 @@ public class Item {
     public void setUnit_price(double unit_price) {
         this.unit_price = unit_price;
     }
+
+    @Override
+    public String toString() {
+        return  (item_name != null ? ("      item_name = '" + item_name + '\''  + "\n") : "") +
+                (description != null ? ("         description = '" + description + '\''  + "\n") : "") +
+                "         qty = " + qty  + "\n" +
+                "         unit_price = " + unit_price  + "\n" +
+                "";
+    }
 }

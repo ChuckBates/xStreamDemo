@@ -33,6 +33,7 @@ public class XStreamDemoPlugin extends FishbowlPlugin {
         setModuleName(MODULE_NAME);
         setMenuGroup(MenuGroupNameConst.GENERAL);
         setDefaultHelpPath("https://www.fishbowlinventory.com/wiki");
+//        setIconClassPath("images/moduleIcon.png");
 
         fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Specify a file");
@@ -53,6 +54,11 @@ public class XStreamDemoPlugin extends FishbowlPlugin {
         super.initModule();
 
         initComponents();
+    }
+
+    @Override
+    public String getModuleTitle() {
+        return "<html><center>XStream<br>Demo</center></html>";
     }
 
     @Override
@@ -87,7 +93,7 @@ public class XStreamDemoPlugin extends FishbowlPlugin {
                 txtXml.setText(new String(encoded, StandardCharsets.UTF_8));
             } catch (IOException e) {
                 e.printStackTrace();
-                txtXml.setText("ERROR!!  " + e);
+                txtXml.setText("ERROR!!  " + "\n"  + e);
                 return;
             }
 
@@ -96,7 +102,7 @@ public class XStreamDemoPlugin extends FishbowlPlugin {
                 orderList = XStreamUtil.convertXmlFile(file);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                txtObject.setText("ERROR!!" + "\\n" + e);
+                txtObject.setText("ERROR!!" + "\n" + e);
                 return;
             }
 
@@ -104,8 +110,7 @@ public class XStreamDemoPlugin extends FishbowlPlugin {
                 StringBuilder objectInfo = new StringBuilder("");
                 for (Order order : orderList) {
                     objectInfo.append(order.toString());
-                    objectInfo.append("\\n");
-                    objectInfo.append("\\n");
+                    objectInfo.append("\n");
                 }
 
                 txtObject.setText(objectInfo.toString());

@@ -16,6 +16,8 @@ public class Order {
     private int customer_type;
     @XStreamAlias("po")
     private String po;
+    @XStreamAlias("shipping_instr")
+    private String shipping_instr;
     @XStreamAlias("shipMethod")
     private String shipMethod;
     @XStreamAlias("billConvReq")
@@ -23,11 +25,13 @@ public class Order {
     @XStreamAlias("show_price")
     private boolean show_price;
     @XStreamAlias("shipto")
-    private ShipToAddress shipTo;
+    private ShipToAddress shipto;
     @XStreamAlias("billto")
-    private BillToAddress billTo;
+    private BillToAddress billto;
+    @XStreamAlias("payment_method")
+    private String payment_method;
 
-    @XStreamImplicit
+    @XStreamImplicit(itemFieldName = "items")
     private List<Item> items;
 
     public int getOrderId() {
@@ -62,6 +66,14 @@ public class Order {
         this.shipMethod = shipMethod;
     }
 
+    public String getShipping_instr() {
+        return shipping_instr;
+    }
+
+    public void setShipping_instr(String shipping_instr) {
+        this.shipping_instr = shipping_instr;
+    }
+
     public boolean isBillConvReq() {
         return billConvReq;
     }
@@ -78,20 +90,28 @@ public class Order {
         this.show_price = show_price;
     }
 
-    public ShipToAddress getShipTo() {
-        return shipTo;
+    public ShipToAddress getShipto() {
+        return shipto;
     }
 
-    public void setShipTo(ShipToAddress shipTo) {
-        this.shipTo = shipTo;
+    public void setShipto(ShipToAddress shipto) {
+        this.shipto = shipto;
     }
 
-    public BillToAddress getBillTo() {
-        return billTo;
+    public BillToAddress getBillto() {
+        return billto;
     }
 
-    public void setBillTo(BillToAddress billTo) {
-        this.billTo = billTo;
+    public void setBillto(BillToAddress billto) {
+        this.billto = billto;
+    }
+
+    public String getPayment_method() {
+        return payment_method;
+    }
+
+    public void setPayment_method(String payment_method) {
+        this.payment_method = payment_method;
     }
 
     public List<Item> getItems() {
@@ -100,5 +120,30 @@ public class Order {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    private String getItemsString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Item item : items) {
+            stringBuilder.append(item.toString());
+        }
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Order:" + "\n" +
+                "   orderId = " + orderId + "\n" +
+                "   customer_type = " + customer_type + "\n" +
+                (po != null ? ("   po = '" + po + '\'' + "\n") : "") +
+                (shipping_instr != null ? ("   shipping_instr = '" + shipping_instr + '\'' + "\n") : "") +
+                (shipMethod != null ? ("   shipMethod = '" + shipMethod + '\'' + "\n") : "") +
+                "   billConvReq = " + billConvReq + "\n" +
+                "   show_price = " + show_price + "\n" +
+                (shipto != null ? ("   shipto: "  + "\n" + shipto.toString()) : "") +
+                (billto != null ? ("   billto: "  + "\n" + billto.toString()) : "") +
+                (payment_method != null ? ("   payment_method = '" + payment_method + '\'' + "\n") : "") +
+                "   items: "  + "\n" + getItemsString() +
+                "";
     }
 }
